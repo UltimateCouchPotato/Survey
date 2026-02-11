@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mission Debrief</title>
+<style>
+  body {
+    background-color: #2F353B; /* Tactical Grey */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    color: #FF5252; /* Bright Red */
+    text-transform: uppercase;
+    font-size: 28px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    color: #ccc;
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 400px;
+  }
+
+  form {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  /* NAME INPUT FIELD */
+  .name-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 25px;
+    background-color: #1a1d21;
+    border: 2px solid #555;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+    text-align: center;
+  }
+
+  .name-input:focus {
+    outline: none;
+    border-color: #FF5252;
+    box-shadow: 0 0 10px rgba(255, 82, 82, 0.3);
+  }
+
+  /* THE BIG BUTTONS */
+  .option-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid #555;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+    text-align: left;
+    position: relative;
+  }
+
+  /* Icon/Checkmark area */
+  .option-btn::after {
+    content: '⬜';
+    position: absolute;
+    right: 20px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+  }
+
+  /* Active State (When clicked) */
+  .option-btn.active {
+    background-color: #FF5252;
+    border-color: #FF5252;
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 82, 82, 0.4);
+  }
+
+  .option-btn.active::after {
+    content: '✅';
+    filter: none;
+    opacity: 1;
+  }
+
+  /* SUBMIT BUTTON */
+  .submit-btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+
+  .submit-btn:hover {
+    background-color: #FF5252;
+  }
+</style>
+</head>
+<body>
+
+  <h2>Mission Debrief</h2>
+  <p>Help us improve. Please enter your name and select the main reason you can't join today.</p>
+
+  <form action="https://api.sheetmonkey.io/form/65yGAAULi5tW8bTSG89wq7" method="POST">
+    
+    <input type="hidden" name="x-url" value="https://www.giftoflife.org" />
+    <input type="hidden" name="Timestamp" value="x-sheetmonkey-current-date-time" />
+    
+    <input type="text" name="Student Name" class="name-input" placeholder="Enter Your Name..." required>
+
+    <input type="hidden" id="barrierInput" name="Main Barrier" required>
+
+    <button type="button" class="option-btn" onclick="selectOption('Pain/Needles', this)">
+      Fear of Pain / Needles
+    </button>
+    
+    <button type="button" class="option-btn" onclick="selectOption('No Time', this)">
+      In a rush / No time
+    </button>
+    
+    <button type="button" class="option-btn" onclick="selectOption('Privacy', this)">
+      Privacy Concerns
+    </button>
+    
+    <button type="button" class="option-btn" onclick="selectOption('Religious', this)">
+      Religious Beliefs
+    </button>
+    
+    <button type="button" class="option-btn" onclick="selectOption('Not Interested', this)">
+      Just not interested
+    </button>
+
+    <button type="submit" class="submit-btn">SUBMIT INTEL</button>
+  </form>
+
+  <script>
+    function selectOption(value, btnElement) {
+      // 1. Set the hidden input value
+      document.getElementById('barrierInput').value = value;
+
+      // 2. Reset all buttons visually
+      var buttons = document.getElementsByClassName('option-btn');
+      for(var i=0; i<buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+
+      // 3. Highlight the clicked button
+      btnElement.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
