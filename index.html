@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mission Debrief</title>
+<title>Gift of Life Feedback</title>
 <style>
   body {
-    background-color: #2F353B; /* Tactical Grey */
+    background-color: #F4F6F9; /* Clean Light Grey */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    color: #333;
     padding: 20px;
     margin: 0;
     text-align: center;
@@ -18,17 +18,15 @@
   }
   
   h2 {
-    color: #FF5252; /* Bright Red */
-    text-transform: uppercase;
+    color: #F26522; /* Gift of Life Orange */
     font-size: 28px;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    margin-bottom: 5px;
   }
 
   p {
-    color: #ccc;
+    color: #555;
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     max-width: 400px;
   }
 
@@ -37,104 +35,105 @@
     max-width: 400px;
   }
 
-  /* NAME INPUT FIELD */
-  .name-input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 25px;
-    background-color: #1a1d21;
-    border: 2px solid #555;
-    color: white;
-    font-size: 18px;
-    border-radius: 8px;
-    box-sizing: border-box; /* Ensures padding doesn't break width */
-    text-align: center;
-  }
-
-  .name-input:focus {
-    outline: none;
-    border-color: #FF5252;
-    box-shadow: 0 0 10px rgba(255, 82, 82, 0.3);
-  }
-
   /* THE BIG BUTTONS */
   .option-btn {
     display: block;
     width: 100%;
     padding: 18px;
-    margin-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 2px solid #555;
-    color: white;
-    font-size: 18px;
+    margin-bottom: 12px;
+    background-color: white;
+    border: 2px solid #ddd;
+    color: #333;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     border-radius: 8px;
     transition: 0.2s;
     text-align: left;
     position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* Icon/Checkmark area */
   .option-btn::after {
-    content: '⬜';
+    content: '';
     position: absolute;
     right: 20px;
-    filter: grayscale(100%);
-    opacity: 0.5;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
   }
 
   /* Active State (When clicked) */
   .option-btn.active {
-    background-color: #FF5252;
-    border-color: #FF5252;
-    color: white;
-    box-shadow: 0 0 15px rgba(255, 82, 82, 0.4);
+    border-color: #F26522;
+    background-color: rgba(242, 101, 34, 0.05);
   }
 
   .option-btn.active::after {
-    content: '✅';
-    filter: none;
-    opacity: 1;
+    background-color: #F26522;
+    border-color: #F26522;
+  }
+
+  /* HIDDEN OTHER TEXT BOX */
+  .other-input {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    border: 2px solid #F26522;
+    color: #333;
+    font-size: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  .other-input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(242, 101, 34, 0.3);
+  }
+
+  .other-input.visible {
+    display: block;
   }
 
   /* SUBMIT BUTTON */
   .submit-btn {
-    background-color: #800000;
+    background-color: #007A5E; /* GoL Secondary Green */
     color: white;
     border: none;
-    padding: 20px;
+    padding: 18px;
     width: 100%;
-    font-size: 20px;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
     border-radius: 8px;
     cursor: pointer;
-    letter-spacing: 1px;
     transition: 0.3s;
   }
 
   .submit-btn:hover {
-    background-color: #FF5252;
+    background-color: #005F49;
   }
 </style>
 </head>
 <body>
 
-  <h2>Mission Debrief</h2>
-  <p>Help us improve. Please enter your name and select the main reason you can't join today.</p>
+  <h2>Quick Feedback</h2>
+  <p>Your response is 100% anonymous. What is the main reason you are unable to join the registry today?</p>
 
   <form action="https://api.sheetmonkey.io/form/65yGAAULi5tW8bTSG89wq7" method="POST">
     
     <input type="hidden" name="x-url" value="https://www.giftoflife.org" />
     <input type="hidden" name="Timestamp" value="x-sheetmonkey-current-date-time" />
     
-    <input type="text" name="Student Name" class="name-input" placeholder="Enter Your Name..." required>
-
     <input type="hidden" id="barrierInput" name="Main Barrier" required>
 
-    <button type="button" class="option-btn" onclick="selectOption('Pain/Needles', this)">
+    <button type="button" class="option-btn" onclick="selectOption('Fear of Pain / Needles', this)">
       Fear of Pain / Needles
     </button>
     
@@ -150,11 +149,13 @@
       Religious Beliefs
     </button>
     
-    <button type="button" class="option-btn" onclick="selectOption('Not Interested', this)">
-      Just not interested
+    <button type="button" class="option-btn" onclick="selectOption('Other', this)">
+      Other (Please specify)
     </button>
 
-    <button type="submit" class="submit-btn">SUBMIT INTEL</button>
+    <input type="text" id="otherText" name="Other Reason" class="other-input" placeholder="Type your reason here...">
+
+    <button type="submit" class="submit-btn">SUBMIT FEEDBACK</button>
   </form>
 
   <script>
@@ -170,6 +171,17 @@
 
       // 3. Highlight the clicked button
       btnElement.classList.add('active');
+
+      // 4. Handle the "Other" text box logic
+      var otherBox = document.getElementById('otherText');
+      if(value === 'Other') {
+        otherBox.classList.add('visible');
+        otherBox.required = true; // Makes sure they don't leave it blank
+      } else {
+        otherBox.classList.remove('visible');
+        otherBox.required = false;
+        otherBox.value = ""; // Clears it out if they change their mind
+      }
     }
   </script>
 
